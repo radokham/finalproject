@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
-MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,} from "mdbreact";
-
+MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,} from "mdbreact";
+import logo from "./logo.png";
+import "./Navbar.css";
 class NavbarPage extends Component {
 state = {
   isOpen: false
@@ -13,22 +14,23 @@ toggleCollapse = () => {
 
 render() {
   return (
-      <MDBNavbar color="indigo" dark expand="md">
+      <MDBNavbar color="#f3671f" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">Serashop</strong>
+          {/* <strong className="white-text">Serashop</strong> */}
+          <img src={logo} alt="Cuisinier" className="navbar-brand" />
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="/home">Home</MDBNavLink>
+              <MDBNavLink to="/home">Atelier</MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem>
+            {/* <MDBNavItem>
               <MDBNavLink to="/features">Features</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/pricing">Pricing</MDBNavLink>
-            </MDBNavItem>
+            </MDBNavItem> */}
             
           </MDBNavbarNav>
           <MDBNavbarNav right>
@@ -37,11 +39,11 @@ render() {
               <MDBNavLink to="/login">Se connecter</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-            <MDBFormInline waves>
+            {/* <MDBFormInline waves>
                 <div className="md-form my-0">
                   <input className="form-control mr-sm-2" type="text" placeholder="Recherche Produits" aria-label="Search" />
                 </div>
-              </MDBFormInline>
+              </MDBFormInline> */}
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { MDBIcon,MDBCol,MDBInput,MDBCard, MDBCardBody} from "mdbreact";
-import './Atelier.css';
 
-class Atelier extends React.Component {
+
+
+class Update extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,12 +29,12 @@ class Atelier extends React.Component {
     })
 }
 
-  handleUploadImage() {
+  handleUploadImage(ev) {
+    ev.preventDefault();
 
     const data = new FormData();
-    
+  
     data.append('title',this.state.title);
-    data.append('idUser',localStorage.getItem('id'));
     data.append('description',this.state.description);
     data.append('date',this.state.date);
     data.append('hour',this.state.hour);
@@ -42,15 +43,19 @@ class Atelier extends React.Component {
     data.append('reserve',this.state.reserve);
     data.append('price',this.state.price);
     data.append('image', this.uploadInput.files[0]);
-  
-    fetch('http://localhost:8080/api/ateliers', {
-      method: 'POST',
+
+    fetch('http://localhost:8080/api/ateliers/'+ this.props.match.params.id, {
+      method: 'PUT',
       body: data,
     }).then((response) => {
+        console.log('Reussi ' + response);
+        console.log('this.props.match.params.id '+this.props.match.params.id);
+        
+        
       response.json().then((body) => {
         this.setState({ image: `http://localhost:8080/api/ateliers/${body.image}` });
-        console.log('ity ilay body.fil',body.image);
-        
+        console.log('Reussi.image', body.image);
+  
       });
     });
   }
@@ -62,7 +67,7 @@ class Atelier extends React.Component {
             <MDBCard width="100%">
               <MDBCardBody>
                 <form  onSubmit={this.handleUploadImage}>
-                  <p className="h4 text-center py-4">Ajouter de nouveau atelier </p>
+                  <p className="h4 text-center py-4">Modifier une atelier </p>
                   <div className="grey-text">
                     <MDBInput
                       label="Nom du l'atelier"
@@ -89,7 +94,7 @@ class Atelier extends React.Component {
                       success="right" value={this.state.value} onChange={this.onChange} name="date"
                     />
                      <MDBInput
-                      label="Horaire de debut"
+                      label="horaire"
                       group
                       type="text"
                       validate
@@ -135,7 +140,7 @@ class Atelier extends React.Component {
                   <div className="text-center">
                   <div className="text-center mb-4">
                 <button className="btn btn-large waves-effect waves-light hoverable blue accent-3" id="couleur" type="submit" >
-                  Ajouter
+                Modifier
                   <MDBIcon icon="paper-plane" className="ml-2" />
                 </button>
               </div>
@@ -159,4 +164,4 @@ class Atelier extends React.Component {
   }
 }
 
-export default Atelier;
+export default Update;

@@ -27,7 +27,12 @@ export const loginCooker = cookerData => dispatch => {
 
       // Set token to localStorage
       const { token } = res.data;
+      console.log('res data ', res.data)
       localStorage.setItem("jwtToken", token);
+      localStorage.setItem("id", res.data.id);
+      // console.log('res.data'+localStorage.id);
+      
+      
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get cooker data

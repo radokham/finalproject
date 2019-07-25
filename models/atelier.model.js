@@ -3,14 +3,15 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const AtelierSchema = new Schema({
-  cooker: {
-    type: Schema.Types.ObjectId,
-    ref: "cookers"
-  },
+  // cooker: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "cookers"
+  // },
   _id: {
     type: Number,
     required: true
   },
+  idUser: Number,
   title: {
     type: String,
     required: true
@@ -52,3 +53,6 @@ const AtelierSchema = new Schema({
 });
 
 module.exports = Product = mongoose.model("atelier", AtelierSchema);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+// mongoose.set('useCreateIndex', true

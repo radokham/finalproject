@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Getatelier.css';
+import { NavLink} from "react-router-dom";
 
 
 export default class Tableau extends Component {
@@ -10,10 +12,20 @@ export default class Tableau extends Component {
 
     }
     componentDidMount() {
+        var tab = []
         axios.get('http://localhost:8080/api/ateliers')
             .then(response => {
-                console.log('produit tableau :', response.data)
-                this.setState({ atelier: response.data });
+                console.log('response.data: ',response.data)
+                for( let i=0;i<response.data.length;i++){
+                    console.log('test res', response.data[i]._id)
+                    console.log('test local', localStorage.getItem('id'))
+                    if(response.data[i].idUser==localStorage.getItem('id')){
+                        tab.push(response.data[i])
+                    }
+                    
+                }
+                console.log('Atelier tableau :',tab)
+                this.setState({ atelier: tab });
             })
             .catch(function (error) {
                 console.log(error);
@@ -28,7 +40,7 @@ export default class Tableau extends Component {
                     <thead>
                         <tr>
                            
-                            <th className="thtab">Title</th>
+                            <th className="thtab">Titre</th>
                             <th className="thtab">Description</th>
                             <th className="thtab">Date</th>
                             <th className="thtab">horaire de debut</th>
@@ -43,21 +55,23 @@ export default class Tableau extends Component {
                     <tbody>
                         {
                             (this.state.atelier.length > 0) ? (this.state.atelier.map((obj) => {
+                                var a = "http://localhost:8080/atelier/"+obj.image
                                 return <tr key={obj._id}>
-                                    <td><img id="imagetab" width="100px" height="90px" src={'http://localhost:8080/api/atelier/s'+obj.image} alt={obj.photo_produit}/></td>
-                                    <td>{obj.titre}</td>
+                                   
+                                    <td>{obj.title}</td>
                                     <td>{obj.description}</td>
                                     <td>{obj.date}</td>
-                                    <td>{obj.horaire}</td>
-                                    <td>{obj.duree}</td>
-                                    <td>{obj.place_dispo}</td>
-                                    <td>{obj.place_reserve}</td>
-                                    <td>{obj.prix}  €</td>
-                                    <td><button type="submit" className="btn btn-danger">supprimer</button><br/>
-                                    <button type="submit" className="btn btn-success">Modifier</button></td>
+                                    <td>{obj.hour}</td>
+                                    <td>{obj.duration}</td>
+                                    <td>{obj.dispo}</td>
+                                    <td>{obj.reserve}</td>
+                                    <td>{obj.price}€</td>
+                                    <td><img id="imagetab" width="100px" height="90px" src={a} alt={obj.image}/></td>
+                                    <td><button type="submit" className="btn btn-success" id="couleur">Desactivier</button><br/>
+                                    <button type="submit" className="btn btn-success" id="couleur"><NavLink to={'/modifier/'+obj._id}>Modifier</NavLink></button></td>
                                     
                                 </tr>
-                            })) : ('Aucun produit à vendre')
+                            })) : ('Aucun Atelier')
                         }
                     </tbody>
                 </table>

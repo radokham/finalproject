@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginCooker } from "../../actions/authActions";
 import classnames from "classnames";
+import './Login.css';
 
 class Login extends Component {
   constructor() {
@@ -56,18 +57,18 @@ class Login extends Component {
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
+            {/* <Link to="/" className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to
               Home
-            </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            </Link> */}
+            {/* <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Login</b> below
               </h4>
               <p className="grey-text text-darken-1">
                 Don't have an account? <Link to="/register">Register</Link>
               </p>
-            </div>
+            </div> */}
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
@@ -109,9 +110,11 @@ class Login extends Component {
                     width: "150px",
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    marginTop: "1rem",
+                    backgroundColor: "#d05c62!important",
                   }}
                   type="submit"
+                  id="couleur"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
                 Se connecter

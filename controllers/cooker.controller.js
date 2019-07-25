@@ -45,7 +45,8 @@ exports.inscrire = (req, res) => {
   // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newCooker.password, salt, (err, hash) => {
-            if (err) throw err;
+            console.log('reussi,')
+            if (err) throw err ;
             newCooker.password = hash;
             newCooker
               .save()
@@ -94,6 +95,7 @@ exports.authentifie = (req, res) => {
             },
             (err, token) => {
               res.json({
+                id:cooker.id,
                 success: true,
                 token: "Bearer " + token
               });

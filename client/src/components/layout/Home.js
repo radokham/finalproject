@@ -1,9 +1,13 @@
 import React from 'react';
+import Cartatelier from"../dashboard/Cartatelier";
+
+
 
 export default function Home() {
   return (
     <div>
-      <h1>Welcome</h1>
-    </div>
+      <Cartatelier/>
+   
+     </div>
   );
 }
