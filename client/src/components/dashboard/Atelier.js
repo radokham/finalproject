@@ -91,13 +91,13 @@ class Atelier extends React.Component {
                      <MDBInput
                       label="Horaire de debut"
                       group
-                      type="text"
+                      type="time"
                       validate
                       error="wrong"
                       success="right" value={this.state.value} onChange={this.onChange}  name="hour"
                     />
                      <MDBInput
-                      label="Duree"
+                      label="Durée"
                       group
                       type="number"
                       validate

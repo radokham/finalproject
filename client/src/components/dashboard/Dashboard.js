@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutCooker } from "../../actions/authActions";
-import Atelier from"./Atelier";
+import Atelier from "./Atelier";
 import Getatelier from"./Getatelier";
-
+// import Adminpage from"./Adminpage";
 import './Dashboard.css';
 
 class Dashboard extends Component {
@@ -23,6 +23,7 @@ class Dashboard extends Component {
           <div className="col-md-6">
 
           < Atelier />
+          < Getatelier />
           </div>
           <div className="col-md-6">
           <div className="landing-copy col s12 center-align">
@@ -51,7 +52,7 @@ matières premières.</p>
           </div>
           </div>
         </div>
-     < Getatelier/>
+     
 
       </div>
     );

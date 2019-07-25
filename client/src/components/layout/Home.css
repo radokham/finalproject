@@ -1,0 +1,21 @@
+.card-image{
+    background-image: url('./food.jpg');
+    background-size: 3em 25%;;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: padding-box;
+}
+.card-image1{
+    background-image: url('./masala.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: padding-box;
+}
+.card-image3{
+    background-image: url('./olive.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: padding-box;
+}

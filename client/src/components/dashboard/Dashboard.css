@@ -1,3 +1,9 @@
 #couleur{
     background-color: #d05c62!important;
 }
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h4{
+    font-family: 'Roboto Slab', serif;
+}

@@ -55,13 +55,13 @@ export default class Cart extends Component {
                                 <MDBCardBody>
                                    
                                     <MDBCardTitle style={{fontWeight:"bolder" ,textAlign:"center", marginTop: "6px",fontFamily: "Roboto Slab, serif"}}>Titre: {obj.title}</MDBCardTitle>
-                                    <MDBCardTitle>Description: {obj.description}</MDBCardTitle>
-                                    <MDBCardTitle>Date: {obj.date}</MDBCardTitle>
-                                    <MDBCardTitle>Horaire de debut: {obj.hour}</MDBCardTitle>
-                                    <MDBCardTitle>Durée: {obj.duration}H</MDBCardTitle>
-                                    <MDBCardTitle>Place disponible:{ obj.dispo}</MDBCardTitle>
-                                    <MDBCardTitle>Place reservé: {obj.reserve}</MDBCardTitle>
-                                    <MDBCardTitle>Prix: {obj.price} €</MDBCardTitle>
+                                    <MDBCardTitle> <span className="bold">Description:</span> {obj.description}</MDBCardTitle>
+                                    <MDBCardTitle> <span className="bold">Date:</span> {obj.date}</MDBCardTitle>
+                                    <MDBCardTitle><span className="bold">Horaire de début:</span> {obj.hour}</MDBCardTitle>
+                                    <MDBCardTitle><span className="bold">Durée:</span> {obj.duration}</MDBCardTitle>
+                                    <MDBCardTitle><span className="bold">Place disponible:</span>{ obj.dispo}</MDBCardTitle>
+                                    <MDBCardTitle><span className="bold">Place reservé:</span> {obj.reserve}</MDBCardTitle>
+                                    <MDBCardTitle><span className="bold">Prix:</span> {obj.price} €</MDBCardTitle>
                                     <MDBCardTitle><MDBCardImage id="img" className="img-fluid"  src={a} alt={obj.image}/></MDBCardTitle>
                                     <MDBCardTitle><MDBBtn id="couleur" type="submit" className="btn btn-success"><NavLink to="/inscrire">inscrire</NavLink></MDBBtn><br/>
                                </MDBCardTitle>

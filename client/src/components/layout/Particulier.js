@@ -32,6 +32,7 @@ handleUploadImage(ev) {
     method: 'POST',
     body: data,
   }).then((response) => {
+    document.getElementById('Inscription reussi').innerHTML="Inscription réussi"
     response.json().then((body) => {
       console.log('kaiza lesy a', body);
 
@@ -76,7 +77,7 @@ render() {
                 <input className="form-control" type="text"
                   value={this.state.value}
                   onChange={this.onChange}
-                  name="phone" placeholder=" Numero télephone" />
+                  name="phone" placeholder=" Numéro télephone" />
 
               </div>
             </div>
@@ -84,6 +85,7 @@ render() {
             <br />
 
                 <button id="validate" className="btn btn-info">Valider</button>
+                <div id="Inscription reussi"> </div>
 
 
           </div>

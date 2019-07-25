@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../config/database.config");
 
 const Particular = require("../models/particular.model");
+const Atelier = require('../models/atelier.model');
 
 
 exports.inscrire = (req, res) => {
@@ -29,6 +30,8 @@ exports.inscrire = (req, res) => {
             phone: req.body.phone,
 
           });
+          
+          
           newParticular
             .save()
             .then(particular => res.json(particular))
