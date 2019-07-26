@@ -28,17 +28,19 @@ exports.create = (req, res) => {
             const atelier = new Atelier({
 
                 _id: idautom,
+                
                 title: req.body.title,
+                idUser: req.body.idUser,
                 description:req.body.description,
                 date: req.body.date,
                 hour:req.body.hour,
                 duration:req.body.duration,
-                dispo:req.body.dispo,
-                reserve:req.body.reserve,
+                dispo:req.body.dispo ,
+                reserve:req.body.reserve ,
                 price: req.body.price,
                 image: '' + nomImg + '.jpg'
             });
-console.log(atelier.hasOwnProperty("reserve"))
+//console.log(atelier.hasOwnProperty("reserve"))
             // Save Atelier in the database
             atelier.save()
                 .then(data => { console.log('reussi')
@@ -84,7 +86,32 @@ exports.findOne = (req, res) => {
         });
     });
 };
+//idUser
+exports.findOne = (req, res) => {
+    Atelier.find({idUser:req.params.idUser})
+        .then(atelier => {
+            //console.log(unprofil)
+            if (!atelier) {
+                return res.status(404).send({
+                    message: "atelier not found with id" + req.params.idUser
+                });
+            }
+            else {
+                res.send(atelier);
+            }
 
+
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res.status(404).send({
+                    message: "atelier not found with id " + req.params.idUser
+                });
+            }
+            return res.status(500).send({
+                message: "Something wrong retrieving atelier with id " + req.params.idUser
+            });
+        });
+};
 //Read image of atelier
 exports.readImage =(req, res) =>{
     try {
@@ -92,57 +119,105 @@ exports.readImage =(req, res) =>{
         res.write(picture)
         res.end()
     } catch (e) {
-        console.log("Hey Lee, an error was found: ", e.stack);
+        console.log("Tsy mety zany zandry rado a, an error was found: ", e.stack);
     }
 }
 
 
 // Update a atelier identified by the atelierId in the request
 exports.update = (req, res) => {
-    // Validate Request
-    if(!req.body.title && !req.body.description && !req.body.date && !req.body.hour && !req.body.dispo && !req.body.reserve && !req.body.duration && !req.body.price && !req.files.image) {
+
+    if(!req.body.title || !req.body.description) {
         return res.status(400).send({
-            message: "No atelier field can not be empty"
+            message: "Atelier content can not be empty"
         });
     }
-
+    console.log('voila params'+req.params.profilId)
     let imageFile = req.files.image;
-    let nomImg = req.params.atelierId;
-    imageFile.mv(`${__dirname}/public/${nomImg}.jpg`, function (err) {
-        if (err) {
-            return res.status(500).send("string");
-        }
-    });
+        //console.log('inona ny ato o!'+imageFile)
+        let nomImg = req.params.profilId
+        res.setHeader('Content-Type', 'text/plain');
 
-    // Find atelier and update it with the request body
-    Atelier.findByIdAndUpdate(req.params.atelierId, {
+        imageFile.mv(`${__dirname}/public/${nomImg }.jpg`, function(err) {
+          if (err) {
+            return res.status(500).send(err);
+          }
+        });
+        console.log('Reussi')
+    // Find and update eleve with the request body
+    Atelier.findByIdAndUpdate(req.params.profilId, {
         title: req.body.title,
-        description: req.body.description,
+        description:req.body.description,
         date: req.body.date,
-        hour: req.body.hour,
-        duration: req.body.duration,
-        dispo: req.body.dispo,
+        hour:req.body.hour,
+        duration:req.body.duration,
+        dispo:req.body.dispo,
         reserve:req.body.reserve,
         price: req.body.price,
-        image: '' + nomImg + '.jpg'        
+        image: '' + nomImg + '.jpg'
+        
     }, {new: true})
-    .then(atl => {
-        if(!atl) {
+    .then(user => {
+        if(!user) {
             return res.status(404).send({
-                message: "Atelier not found with id " + req.params.atelierId
+                message: "Atelier not found with id " + req.params.profilId
             });
         }
-        res.send(atl);
+        res.send(user);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Atelier not found with id " + req.params.atelierId
+                message: "Atelier not found with id " + req.params.profilId
             });                
         }
         return res.status(500).send({
-            message: "Error updating atelier with id " + req.params.atelierId
+            message: "Something wrong upd   ating note with id " + req.params.profilId
         });
     });
+    // // Validate Request
+    // if(!req.body.title && !req.body.description && !req.body.date && !req.body.hour && !req.body.dispo && !req.body.reserve && !req.body.duration && !req.body.price && !req.files.image) {
+    //     return res.status(400).send({
+    //         message: "No atelier field can not be empty"
+    //     });
+    // }
+
+    // let imageFile = req.files.image;
+    // let nomImg = req.params.atelierId;
+    // imageFile.mv(`${__dirname}/public/${nomImg}.jpg`, function (err) {
+    //     if (err) {
+    //         return res.status(500).send("string");
+    //     }
+    // });
+
+    // // Find atelier and update it with the request body
+    // Atelier.findByIdAndUpdate(req.params.atelierId, {
+    //     title: req.body.title,
+    //     description:req.body.description,
+    //     date: req.body.date,
+    //     hour:req.body.hour,
+    //     duration:req.body.duration,
+    //     dispo:req.body.dispo,
+    //     reserve:req.body.reserve,
+    //     price: req.body.price,
+    //     image: '' + nomImg + '.jpg'       
+    // }, {new: true})
+    // .then(atl => {
+    //     if(!atl) {
+    //         return res.status(404).send({
+    //             message: "Atelier not found with id " + req.params.atelierId
+    //         });
+    //     }
+    //     res.send(atl);
+    // }).catch(err => {
+    //     if(err.kind === 'ObjectId') {
+    //         return res.status(404).send({
+    //             message: "Atelier not found with id " + req.params.atelierId
+    //         });                
+    //     }
+    //     return res.status(500).send({
+    //         message: "Error updating atelier with id " + req.params.atelierId
+    //     });
+    // });
 };
 
 // Delete a atelier with the specified atelierId in the request
@@ -166,3 +241,25 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+//Desactivier
+
+exports.masquer = (req,res)=>{
+    // router.get("/ateliermasquer/:_id",(req,res)=>{
+
+        Atelier.findOneAndUpdate({_id:req.params._id}, { 
+            visibilite:false
+
+        },{new:true}).then(upd=>res.send(upd)
+        )
+
+    }
+
+    exports.gestion = (req,res) => {
+    // router.get("/atelieraffichier/:_id",(req,res)=>{
+        Atelier.findOneAndUpdate({_id:req.params._id}, {
+            visibilite:true
+
+        },{new:true}).then(upd=>res.send(upd)
+        )
+    }

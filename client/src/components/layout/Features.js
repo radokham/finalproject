@@ -1,9 +1,9 @@
 import React from 'react';
-
+import Cartatelier from"../dashboard/Cartatelier";
 export default function Features() {
   return (
     <div>
-     <h1>   Welcome to Features</h1>
+    <Cartatelier/>
     </div>
   );
 }

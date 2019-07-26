@@ -16,7 +16,6 @@ const path = require("path")
 
 
 
-// ...
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -38,24 +37,24 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 require("./config/passport/passport_cooker")(passport);
 require("./config/passport/passport_particular")(passport);
 require('./routes/route')(app);
-mongoose.Promise = global.Promise;
-mongoose.connect(config.url, {
-    useNewUrlParser: true
-}).then(() => {
-    console.log("Successfully connected to the database");  
-}).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
-});
+const db = require("./config/database.config");
+// Connect to MongoDB 
+
+mongoose.connect(db.mongoURI,{ useNewUrlParser: true })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
 
-// Routes
+// serve up static assets (usually on heroku)
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static("clients/build"));
+}
 
 
 app.get('/', (req, res) => {
-    res.json({"message": "Welcome to Shop app"});
+    res.json({"message": "bienvenue sur Atelier App"});
 });
 
 // Right before your app.listen(), add this:

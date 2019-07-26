@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerCooker } from "../../actions/authActions";
 import classnames from "classnames";
+import './Register.css';
 
 class Register extends Component {
   constructor() {
@@ -61,15 +62,15 @@ class Register extends Component {
         <div className="row">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              Home
+              <i className="material-icons left">keyboard_backspace</i> Retour à
+               Accueil
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
-                <b>Register</b> below
+                <b>Inscrivez-vous </b> ci-dessous
               </h4>
               <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+              Vous avez déjà un compte?  <Link to="/login">Se connecter</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -163,9 +164,11 @@ class Register extends Component {
                     width: "150px",
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    marginTop: "1rem",
+                    backgroundColor: "#d05c62!important",
                   }}
                   type="submit"
+                  id="couleur"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
                   S'inscrire

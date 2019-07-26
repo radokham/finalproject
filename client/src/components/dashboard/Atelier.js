@@ -1,5 +1,6 @@
 import React from 'react';
 import { MDBIcon,MDBCol,MDBInput,MDBCard, MDBCardBody} from "mdbreact";
+import './Atelier.css';
 
 class Atelier extends React.Component {
   constructor(props) {
@@ -27,12 +28,12 @@ class Atelier extends React.Component {
     })
 }
 
-  handleUploadImage(ev) {
-    ev.preventDefault();
+  handleUploadImage() {
 
     const data = new FormData();
-    data.append('image', this.uploadInput.files[0]);
+    
     data.append('title',this.state.title);
+    data.append('idUser',localStorage.getItem('id'));
     data.append('description',this.state.description);
     data.append('date',this.state.date);
     data.append('hour',this.state.hour);
@@ -40,6 +41,7 @@ class Atelier extends React.Component {
     data.append('dispo',this.state.dispo);
     data.append('reserve',this.state.reserve);
     data.append('price',this.state.price);
+    data.append('image', this.uploadInput.files[0]);
   
     fetch('http://localhost:8080/api/ateliers', {
       method: 'POST',
@@ -56,7 +58,7 @@ class Atelier extends React.Component {
   render() {
     return (
         <div className="container-fluid"> 
-        <MDBCol md="12">
+        <MDBCol md="12" id="ajoutatelier">
             <MDBCard width="100%">
               <MDBCardBody>
                 <form  onSubmit={this.handleUploadImage}>
@@ -87,15 +89,15 @@ class Atelier extends React.Component {
                       success="right" value={this.state.value} onChange={this.onChange} name="date"
                     />
                      <MDBInput
-                      label="horaire"
+                      label="Horaire de debut"
                       group
-                      type="text"
+                      type="time"
                       validate
                       error="wrong"
                       success="right" value={this.state.value} onChange={this.onChange}  name="hour"
                     />
                      <MDBInput
-                      label="Duree"
+                      label="Durée"
                       group
                       type="number"
                       validate
@@ -127,11 +129,12 @@ class Atelier extends React.Component {
                       success="right" value={this.state.value} onChange={this.onChange}  name="price"
                     />
                   <label>Images de l'atelier : </label><br/>
-                  <input ref={(ref) => { this.uploadInput = ref; }} type="file" name="image"/>
+                 
+                  <span> <input ref={(ref) => { this.uploadInput = ref; }} type="file" name="image"/></span>
                   </div>
                   <div className="text-center">
-                  <div className="text-center mt-4">
-                <button className="btn btn-outline-warning" type="submit">
+                  <div className="text-center mb-4">
+                <button className="btn btn-large waves-effect waves-light hoverable blue accent-3" id="couleur" type="submit" >
                   Ajouter
                   <MDBIcon icon="paper-plane" className="ml-2" />
                 </button>
