@@ -59,11 +59,11 @@ export default class Cart extends Component {
                                     <MDBCardTitle> <span className="bold">Date:</span> {obj.date}</MDBCardTitle>
                                     <MDBCardTitle><span className="bold">Horaire de début:</span> {obj.hour}</MDBCardTitle>
                                     <MDBCardTitle><span className="bold">Durée:</span> {obj.duration}</MDBCardTitle>
-                                    <MDBCardTitle><span className="bold">Place disponible:</span>{ obj.dispo}</MDBCardTitle>
+                                    <MDBCardTitle><span className="bold">Place disponible:</span>{obj.dispo}</MDBCardTitle>
                                     <MDBCardTitle><span className="bold">Place reservé:</span> {obj.reserve}</MDBCardTitle>
                                     <MDBCardTitle><span className="bold">Prix:</span> {obj.price} €</MDBCardTitle>
                                     <MDBCardTitle><MDBCardImage id="img" className="img-fluid"  src={a} alt={obj.image}/></MDBCardTitle>
-                                    <MDBCardTitle><MDBBtn id="couleur" onClick={()=>localStorage.setItem("_id",obj._id)}type="submit" className="btn btn-success"><NavLink to="/inscrire">inscrire</NavLink></MDBBtn><br/>
+                                    <MDBCardTitle><MDBBtn id="couleur" onClick={()=>localStorage.setItem("_id",obj._id)}type="submit" className="btn btn-success"><NavLink to="/inscrire" style={{fontFamily: "Roboto Slab, serif"}}>inscrire</NavLink></MDBBtn><br/>
                                </MDBCardTitle>
                                </MDBCardBody>
                             </MDBCard>

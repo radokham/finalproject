@@ -34,7 +34,7 @@ export default class Tableau extends Component {
 
     liste() {
         return <div>
-            <div>
+            <div id="listeatelier">
                     <h4>Votre(s)  atelier(s)  recent(s)</h4>
                 <table className="table table-striped table-bordered" id="table">
                     <thead>

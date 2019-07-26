@@ -51,8 +51,9 @@ class Update extends React.Component {
         console.log('Reussi ' + response);
         console.log('this.props.match.params.id '+this.props.match.params.id);
         
-        
+     
       response.json().then((body) => {
+        this.props.history.push("/features")
         this.setState({ image: `http://localhost:8080/api/ateliers/${body.image}` });
         console.log('Reussi.image', body.image);
   

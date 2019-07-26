@@ -58,7 +58,7 @@ class Atelier extends React.Component {
   render() {
     return (
         <div className="container-fluid"> 
-        <MDBCol md="12">
+        <MDBCol md="12" id="ajoutatelier">
             <MDBCard width="100%">
               <MDBCardBody>
                 <form  onSubmit={this.handleUploadImage}>

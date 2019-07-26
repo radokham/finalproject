@@ -17,16 +17,16 @@ render() {
       <MDBNavbar color="#f3671f" dark expand="md">
         <MDBNavbarBrand>
           {/* <strong className="white-text">Serashop</strong> */}
-          <img src={logo} alt="Cuisinier" className="navbar-brand" />
+          <img src={logo} alt="Cuisinier" className="navbar-brand" style={{fontFamily: "Roboto Slab, serif"}} />
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="/home">Accueil</MDBNavLink>
+              <MDBNavLink to="/home"  style={{fontFamily: "Roboto Slab, serif"}}>Accueil</MDBNavLink>
             </MDBNavItem>
              <MDBNavItem>
-              <MDBNavLink to="/features">Atelier</MDBNavLink>
+              <MDBNavLink to="/features" style={{fontFamily: "Roboto Slab, serif"}}>Liste des Ateliers</MDBNavLink>
             </MDBNavItem>
             {/* <MDBNavItem>
               <MDBNavLink to="/pricing">Pricing</MDBNavLink>
@@ -36,7 +36,7 @@ render() {
           <MDBNavbarNav right>
          
             <MDBNavItem>
-              <MDBNavLink to="/login">Se connecter</MDBNavLink>
+              <MDBNavLink to="/login" style={{fontFamily: "Roboto Slab, serif"}}>Se connecter</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
             {/* <MDBFormInline waves>

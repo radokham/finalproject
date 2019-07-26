@@ -5,7 +5,8 @@ import './Home.css';
 
 const Home = () => {
   return (
-  <section className="text-center my-5">
+    <div >
+    <section className="text-center my-5">
     <h2 className="h1-responsive font-weight-bold my-5">
     Application web Atelier Cuisine.
     </h2>
@@ -23,7 +24,7 @@ const Home = () => {
                 <strong> Travel</strong>
               </h6> */}
               <h3 className="py-3 font-weight-bold">
-                <strong>Introduction</strong>
+                {/* <strong>Introduction</strong> */}
               </h3>
               <p className="pb-3">
               Nous sommes un centre de formation de cuisine qui propose des ateliers à nos élèves à
@@ -53,6 +54,8 @@ const Home = () => {
               <p className="pb-3">
               une application web qui permette à des particuliers de s’inscrire aux ateliers
 que nous proposons!
+C’est la raison pour laquelle nous souhaitons booster cette activité en grâce à cette
+application web.
               </p>
               {/* <MDBBtn color="pink" rounded size="md">
                 <MDBIcon far icon="clone" className="left" /> MDBView project
@@ -86,6 +89,8 @@ cuisiner afin de manger correctement.!
       </MDBCol>
     </MDBContainer>
   </section>
+    </div>
+  
   );
 }
 

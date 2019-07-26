@@ -32,9 +32,11 @@ handleUploadImage(ev) {
     method: 'POST',
     body: data,
   }).then((response) => {
+
    
     response.json()
   }).then(res=>{
+    
     document.getElementById('Inscription reussi').innerHTML="Inscription réussi"
   
     
