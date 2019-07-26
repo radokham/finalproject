@@ -67,7 +67,50 @@ export default class Tableau extends Component {
                                     <td>{obj.reserve}</td>
                                     <td>{obj.price}€</td>
                                     <td><img id="imagetab" width="100px" height="90px" src={a} alt={obj.image}/></td>
-                                    <td><button type="submit" className="btn btn-success" id="couleur">Desactivier</button><br/>
+                                    <td>{obj.visibilite===true ?(<button className="btn btn-success" id="couleur" onClick={(e)=>{
+             e.preventDefault()
+            axios.get(" http://localhost:8080/masque/"+obj._id).then(res=>{
+                var tab = []
+            axios.get('http://localhost:8080/api/ateliers')
+            .then(response => {
+                console.log('response.data: ',response.data)
+                for( let i=0;i<response.data.length;i++){
+                    console.log('test res', response.data[i]._id)
+                    console.log('test local', localStorage.getItem('id'))
+                    if(response.data[i].idUser==localStorage.getItem('id')){
+                        tab.push(response.data[i])
+                    }
+                    
+                }
+                console.log('Atelier tableau :',tab)
+                this.setState({ atelier: tab });
+            })
+                console.log(res.data)})
+           
+          //"/masquer/:_id"/register/:_id   
+         }}>Desactiver</button>):(<button className="btn btn-success" id="couleur"s onClick={(e)=>{
+            e.preventDefault()
+            console.log(obj._id)
+           axios.get("http://localhost:8080/afficher/"+obj._id).then(res=>{
+            var tab = []
+            axios.get('http://localhost:8080/api/ateliers')
+            .then(response => {
+                console.log('response.data: ',response.data)
+                for( let i=0;i<response.data.length;i++){
+                    console.log('test res', response.data[i]._id)
+                    console.log('test local', localStorage.getItem('id'))
+                    if(response.data[i].idUser==localStorage.getItem('id')){
+                        tab.push(response.data[i])
+                    }
+                    
+                }
+                console.log('Atelier tableau :',tab)
+                this.setState({ atelier: tab });
+            })
+                console.log(res.data)
+                })
+            
+         }}>Activer</button>)}<br/>
                                     <button type="submit" className="btn btn-success" id="couleur"><NavLink to={'/modifier/'+obj._id}>Modifier</NavLink></button></td>
                                     
                                 </tr>

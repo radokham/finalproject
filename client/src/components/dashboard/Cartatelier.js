@@ -48,7 +48,7 @@ export default class Cart extends Component {
                     </MDBCardTitle> */}
                     
                         {
-                            (this.state.atelier.length > 0) ? (this.state.atelier.map((obj) => {
+                            (this.state.atelier.length > 0) ? (this.state.atelier.filter((params)=>params.visibilite).map((obj) => {
                                 var a = "http://localhost:8080/atelier/"+obj.image
                                 return <MDBCol md-4 key={obj._id}>
                                 <MDBCard style={{ width: "32rem", fontWeight:"bold" }}>
@@ -63,7 +63,7 @@ export default class Cart extends Component {
                                     <MDBCardTitle><span className="bold">Place reservé:</span> {obj.reserve}</MDBCardTitle>
                                     <MDBCardTitle><span className="bold">Prix:</span> {obj.price} €</MDBCardTitle>
                                     <MDBCardTitle><MDBCardImage id="img" className="img-fluid"  src={a} alt={obj.image}/></MDBCardTitle>
-                                    <MDBCardTitle><MDBBtn id="couleur" type="submit" className="btn btn-success"><NavLink to="/inscrire">inscrire</NavLink></MDBBtn><br/>
+                                    <MDBCardTitle><MDBBtn id="couleur" onClick={()=>localStorage.setItem("_id",obj._id)}type="submit" className="btn btn-success"><NavLink to="/inscrire">inscrire</NavLink></MDBBtn><br/>
                                </MDBCardTitle>
                                </MDBCardBody>
                             </MDBCard>

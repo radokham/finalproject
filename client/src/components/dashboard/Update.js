@@ -94,15 +94,15 @@ class Update extends React.Component {
                       success="right" value={this.state.value} onChange={this.onChange} name="date"
                     />
                      <MDBInput
-                      label="horaire"
+                      label="Horaire de début"
                       group
-                      type="text"
+                      type="number"
                       validate
                       error="wrong"
                       success="right" value={this.state.value} onChange={this.onChange}  name="hour"
                     />
                      <MDBInput
-                      label="Duree"
+                      label="Durée"
                       group
                       type="number"
                       validate
@@ -128,7 +128,7 @@ class Update extends React.Component {
                     <MDBInput
                       label="Prix"
                       group
-                      type="text"
+                      type="number"
                       validate
                       error="wrong"
                       success="right" value={this.state.value} onChange={this.onChange}  name="price"

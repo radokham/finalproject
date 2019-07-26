@@ -28,21 +28,24 @@ handleUploadImage(ev) {
   data.append('email', this.state.email);
   data.append('phone', this.state.phone)
 
-  fetch('http://localhost:8080/api/register', {
+  fetch('http://localhost:8080/register/'+localStorage.getItem("_id"), {
     method: 'POST',
     body: data,
   }).then((response) => {
+   
+    response.json()
+  }).then(res=>{
     document.getElementById('Inscription reussi').innerHTML="Inscription réussi"
-    response.json().then((body) => {
-      console.log('kaiza lesy a', body);
-
-    });
-  });
+  
+    
+  }
+  
+  )
 }
 render() {
     return (
       <div className="container-fluid">
-        <form onSubmit={this.handleUploadImage} className="md-form">
+        <form onSubmit={(this.handleUploadImage)} className="md-form">
           <div className="form-group mx-sm-3 mb-2 container">
             <div className="row">
               <div className="col-xs-6">

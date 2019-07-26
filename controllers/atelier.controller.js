@@ -241,3 +241,25 @@ exports.delete = (req, res) => {
         });
     });
 };
+
+//Desactivier
+
+exports.masquer = (req,res)=>{
+    // router.get("/ateliermasquer/:_id",(req,res)=>{
+
+        Atelier.findOneAndUpdate({_id:req.params._id}, { 
+            visibilite:false
+
+        },{new:true}).then(upd=>res.send(upd)
+        )
+
+    }
+
+    exports.gestion = (req,res) => {
+    // router.get("/atelieraffichier/:_id",(req,res)=>{
+        Atelier.findOneAndUpdate({_id:req.params._id}, {
+            visibilite:true
+
+        },{new:true}).then(upd=>res.send(upd)
+        )
+    }

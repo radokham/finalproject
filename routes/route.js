@@ -5,11 +5,13 @@ module.exports = (app) => {
 
     //route cookers
     app.post('/api/cookers/login', cuisinier.authentifie);
-    app.post('/api/cookers/register', cuisinier.inscrire);   
-
+    app.post('/api/cookers/register', cuisinier.inscrire);  
+    //visibilte atelier 
+app.get('/masque/:_id',atelier.masquer);
+app.get('/afficher/:_id',atelier.gestion);
     //route particuls
     // app.post('/api/login', particulier.authentifie);
-    app.post('/api/register', particulier.inscrire);  
+    app.post('/register/:_id', particulier.inscrire);  
   
     //route ateliers
     app.post('/api/ateliers', atelier.create);

@@ -46,8 +46,10 @@ const AtelierSchema = new Schema({
   },
   image: {
     type: String
-  }
+  },
+  visibilite: Boolean,
 },
+ 
 {
     timestamps: true
 });
